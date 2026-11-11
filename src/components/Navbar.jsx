@@ -135,7 +135,7 @@ export default function Navbar({ darkMode, setDarkMode, personal }) {
 
             {/* Resume Download Button */}
             <a
-              href="/Mahammad_Valluru_Resume.pdf"
+              href={`${import.meta.env.BASE_URL}Mahammad_Valluru_Resume.pdf`}
               download="Mahammad_Valluru_Resume.pdf"
               className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white transition-all shadow-md shadow-emerald-600/20 active:scale-95"
             >
@@ -204,7 +204,7 @@ export default function Navbar({ darkMode, setDarkMode, personal }) {
 
           <div className="pt-2 border-t border-slate-800/50 flex flex-col gap-2">
             <a
-              href="/Mahammad_Valluru_Resume.pdf"
+              href={`${import.meta.env.BASE_URL}Mahammad_Valluru_Resume.pdf`}
               download="Mahammad_Valluru_Resume.pdf"
               className="w-full text-center py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm transition-colors flex items-center justify-center gap-2"
             >

@@ -26,7 +26,7 @@ export const portfolioData = {
     github: "https://github.com/Mahammadvalluru",
     githubUsername: "Mahammadvalluru",
     resumeFileName: "Mahammad_Valluru_Resume.pdf",
-    resumeDownloadUrl: "/Mahammad_Valluru_Resume.pdf",
+    resumeDownloadUrl: `${import.meta.env.BASE_URL}Mahammad_Valluru_Resume.pdf`,
   },
 
   about: {

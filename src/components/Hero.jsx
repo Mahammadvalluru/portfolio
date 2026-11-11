@@ -301,7 +301,7 @@ export default function Hero({ personal, darkMode }) {
                   {/* Circular Image Container */}
                   <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden bg-slate-900 aspect-square">
                     <img
-                      src="/profile.jpg"
+                      src={`${import.meta.env.BASE_URL}profile.jpg`}
                       alt="Mahammad Valluru - Java Backend & Full Stack Developer"
                       width="600"
                       height="600"
