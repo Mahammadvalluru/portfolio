@@ -22,8 +22,6 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
@@ -31,37 +29,19 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - name: Install Dependencies
-        run: npm ci
+      - name: Install Dependencies & Linux Platform Bindings
+        run: |
+          npm ci
+          npm install --no-save @rolldown/binding-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu
 
       - name: Code Quality (ESLint)
         run: npm run lint
 
       - name: Automated Unit Tests (Vitest)
-        run: |
-          npm test > vitest_output.txt 2>&1 || (
-            echo "Vitest failed. Saving debug log to branch debug-log..."
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git checkout -B debug-log
-            git add -f vitest_output.txt
-            git commit -m "debug: vitest failure log"
-            git push -f origin debug-log
-            exit 1
-          )
+        run: npm test
 
       - name: Production Build (Vite)
-        run: |
-          npm run build > build_output.txt 2>&1 || (
-            echo "Build failed. Saving debug log to branch debug-log..."
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git checkout -B debug-log
-            git add -f build_output.txt
-            git commit -m "debug: build failure log"
-            git push -f origin debug-log
-            exit 1
-          )
+        run: npm run build
 
       - name: Continuous Deployment to GitHub Pages
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
