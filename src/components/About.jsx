@@ -13,7 +13,6 @@ import {
   Database,
   ShieldCheck,
   Server,
-  Workflow,
   ArrowRight
 } from 'lucide-react'
 
@@ -32,40 +31,12 @@ export default function About({ about, personal, darkMode }) {
     {
       icon: Database,
       title: "Database Design & Caching",
-      description: "Relational database schema modeling in MySQL, indexing, Flyway migrations, and sub-millisecond Redis caching."
+      description: "Relational schema modeling in MySQL, indexing, Flyway migrations, and sub-millisecond Redis caching."
     },
     {
       icon: ShieldCheck,
       title: "Security & Automated CI/CD",
       description: "Stateless JWT authorization, BCrypt encryption, Docker containerization, and GitHub Actions build verification pipelines."
-    }
-  ]
-
-  const architectureLayers = [
-    {
-      tier: "01. CLIENT TIER",
-      tech: "React 19 • Tailwind CSS • Axios",
-      desc: "Responsive SPA, optimistic UI updates, responsive mobile-first layouts"
-    },
-    {
-      tier: "02. SECURITY & AUTH",
-      tech: "Spring Security 6 • JWT Stateless Auth • BCrypt",
-      desc: "HMAC-SHA256 tokens, role-based access control, secure password hashing"
-    },
-    {
-      tier: "03. BUSINESS LOGIC",
-      tech: "Spring Boot 3.2 • REST APIs • n-Tier Services",
-      desc: "Clean Controller-Service-Repository separation, global exception handling"
-    },
-    {
-      tier: "04. DATA & CACHING",
-      tech: "MySQL 8.0 • Spring Data JPA • Redis 7",
-      desc: "Relational schema indexing, Flyway migrations, sub-50ms cache offloading"
-    },
-    {
-      tier: "05. DEVOPS & CI/CD",
-      tech: "Docker Compose • GitHub Actions • Vercel",
-      desc: "Multi-container orchestration, automated build/test verification pipelines"
     }
   ]
 
@@ -90,12 +61,12 @@ export default function About({ about, personal, darkMode }) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* Main Story (Left: 7 cols) */}
+          {/* Main Story & Strengths (Left: 7 cols) */}
           <div className="lg:col-span-7 space-y-6 text-left">
             <div
               className={`p-6 sm:p-8 rounded-2xl border transition-all ${
                 darkMode
-                  ? 'bg-slate-900/70 border-slate-800'
+                  ? 'bg-slate-900/70 border-slate-800 shadow-lg shadow-black/20'
                   : 'bg-white border-slate-200 shadow-sm'
               }`}
             >
@@ -113,9 +84,9 @@ export default function About({ about, personal, darkMode }) {
               </div>
 
               {/* What I Bring to Your Team */}
-              <div className="mt-8 pt-6 border-t border-slate-800">
+              <div className="mt-8 pt-6 border-t border-slate-800/80">
                 <h4 className="text-xs font-semibold uppercase tracking-wider text-blue-400 mb-4 font-mono">
-                  Why Hire Me As A Fresher Engineer
+                  Core Engineering Capabilities I Deliver
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {highlights.map((item, idx) => {
@@ -133,7 +104,9 @@ export default function About({ about, personal, darkMode }) {
                           <div className="p-1.5 rounded-lg bg-blue-500/10 text-blue-400">
                             <IconComponent className="w-4 h-4" />
                           </div>
-                          <span className="font-semibold text-sm">{item.title}</span>
+                          <span className={`font-semibold text-sm ${darkMode ? 'text-slate-200' : 'text-slate-800'}`}>
+                            {item.title}
+                          </span>
                         </div>
                         <p className={`text-xs leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                           {item.description}
@@ -144,50 +117,6 @@ export default function About({ about, personal, darkMode }) {
                 </div>
               </div>
             </div>
-
-            {/* Unique Impressive Visual: Production Backend Architecture Flow */}
-            <div
-              className={`p-6 sm:p-7 rounded-2xl border ${
-                darkMode
-                  ? 'bg-slate-900/60 border-slate-800'
-                  : 'bg-white border-slate-200 shadow-sm'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <Server className="w-4 h-4 text-blue-400" />
-                  <h4 className={`font-bold text-sm tracking-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                    Production Architecture Standard Practiced
-                  </h4>
-                </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20 font-semibold">
-                  n-Tier Spring Boot
-                </span>
-              </div>
-
-              <div className="space-y-2.5">
-                {architectureLayers.map((layer, index) => (
-                  <div
-                    key={index}
-                    className={`p-3 rounded-xl border text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
-                      darkMode ? 'bg-slate-950/50 border-slate-800/80' : 'bg-slate-50 border-slate-200'
-                    }`}
-                  >
-                    <div>
-                      <span className="font-mono text-[10px] text-blue-400 font-semibold block">
-                        {layer.tier}
-                      </span>
-                      <span className="font-semibold text-slate-200 block text-xs">
-                        {layer.tech}
-                      </span>
-                    </div>
-                    <span className={`text-[11px] sm:text-right ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                      {layer.desc}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Quick Facts Sidebar (Right: 5 cols) */}
@@ -195,16 +124,18 @@ export default function About({ about, personal, darkMode }) {
             <div
               className={`p-6 sm:p-7 rounded-2xl border ${
                 darkMode
-                  ? 'bg-slate-900/80 border-slate-800'
+                  ? 'bg-slate-900/80 border-slate-800 shadow-lg shadow-black/20'
                   : 'bg-white border-slate-200 shadow-sm'
               }`}
             >
-              <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-5">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-800/80 mb-5">
                 <h3 className="font-bold text-base sm:text-lg flex items-center gap-2">
                   <Briefcase className="w-4 h-4 text-blue-400" />
-                  <span>Recruiter Quick Facts</span>
+                  <span className={darkMode ? 'text-white' : 'text-slate-900'}>
+                    Recruiter Quick Facts
+                  </span>
                 </h3>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">
                   Ready to Hire
                 </span>
               </div>

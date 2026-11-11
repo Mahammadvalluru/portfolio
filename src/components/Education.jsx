@@ -53,8 +53,12 @@ export default function Education({ education, darkMode }) {
                   <h3 className="text-lg sm:text-xl font-bold tracking-tight">
                     {item.degree}
                   </h3>
-                  <div className="flex flex-wrap items-center gap-2 mt-1 text-xs sm:text-sm font-medium text-slate-400">
-                    <span className="text-slate-300 font-semibold">{item.institution}</span>
+                  <div className={`flex flex-wrap items-center gap-2 mt-1 text-xs sm:text-sm font-medium ${
+                    darkMode ? 'text-slate-400' : 'text-slate-600'
+                  }`}>
+                    <span className={`font-semibold ${darkMode ? 'text-slate-200' : 'text-slate-800'}`}>
+                      {item.institution}
+                    </span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
                       <MapPin className="w-3 h-3 text-blue-400" />
@@ -63,7 +67,9 @@ export default function Education({ education, darkMode }) {
                   </div>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg bg-slate-800/60 border border-slate-700 text-slate-300 self-start sm:self-auto">
+                <div className={`inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg border self-start sm:self-auto ${
+                  darkMode ? 'bg-slate-800/60 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
+                }`}>
                   <Calendar className="w-3.5 h-3.5 text-blue-400" />
                   <span>{item.period}</span>
                 </div>

@@ -51,70 +51,82 @@ export const portfolioData = {
   skills: {
     categories: [
       {
-        name: "Languages",
+        name: "Programming Languages",
         description: "Core programming and querying languages for robust backend logic",
         items: [
-          { name: "Java (17 / 21)", level: "Primary", icon: "Coffee" },
-          { name: "SQL", level: "Advanced", icon: "Database" },
-          { name: "JavaScript (ES6+)", level: "Proficient", icon: "Code2" },
-          { name: "HTML5 & CSS3", level: "Proficient", icon: "Layout" }
+          { name: "Java (17 / 21)", level: "Primary", icon: "Coffee", highlight: true },
+          { name: "SQL", level: "Advanced", icon: "Database", highlight: true },
+          { name: "JavaScript (ES6+)", level: "Proficient", icon: "Code2", highlight: true },
+          { name: "HTML5 & CSS3", level: "Proficient", icon: "Layout", highlight: false }
         ]
       },
       {
-        name: "Backend & Frameworks",
-        description: "Enterprise application frameworks and secure API architectures",
+        name: "Backend Development",
+        description: "Enterprise application frameworks, microservices, and secure API architectures",
         items: [
-          { name: "Spring Boot", level: "Primary", icon: "Server" },
-          { name: "Spring Data JPA / Hibernate", level: "Advanced", icon: "Layers" },
-          { name: "RESTful APIs", level: "Advanced", icon: "Network" },
-          { name: "Spring Security & JWT", level: "Advanced", icon: "ShieldCheck" },
-          { name: "Microservices Concepts", level: "Intermediate", icon: "Cpu" }
-        ]
-      },
-      {
-        name: "Databases & Caching",
-        description: "Relational, document, and in-memory caching solutions",
-        items: [
-          { name: "MySQL", level: "Advanced", icon: "Database" },
-          { name: "Redis (Caching & Rate Limiting)", level: "Intermediate", icon: "Zap" },
-          { name: "MongoDB", level: "Intermediate", icon: "HardDrive" },
-          { name: "Flyway Migrations", level: "Familiar", icon: "GitCommit" }
+          { name: "Spring Boot", level: "Primary", icon: "Server", highlight: true },
+          { name: "Spring Data JPA / Hibernate", level: "Advanced", icon: "Layers", highlight: true },
+          { name: "RESTful APIs", level: "Advanced", icon: "Network", highlight: true },
+          { name: "Spring Security & JWT", level: "Advanced", icon: "ShieldCheck", highlight: true },
+          { name: "Microservices Architecture", level: "Intermediate", icon: "Cpu", highlight: false },
+          { name: "Multithreading & Concurrency", level: "Advanced", icon: "Activity", highlight: true },
+          { name: "Socket Programming (TCP/IP)", level: "Intermediate", icon: "Workflow", highlight: false }
         ]
       },
       {
         name: "Frontend Development",
-        description: "Modern, component-driven client applications",
+        description: "Modern, component-driven client applications and responsive user interfaces",
         items: [
-          { name: "React.js", level: "Proficient", icon: "Component" },
-          { name: "Tailwind CSS", level: "Proficient", icon: "Palette" },
-          { name: "Responsive UI/UX", level: "Proficient", icon: "Smartphone" },
-          { name: "Axios & Fetch APIs", level: "Proficient", icon: "ArrowLeftRight" },
-          { name: "State Management (Zustand)", level: "Familiar", icon: "Boxes" }
+          { name: "React.js", level: "Proficient", icon: "Component", highlight: true },
+          { name: "Tailwind CSS", level: "Proficient", icon: "Palette", highlight: false },
+          { name: "Responsive UI/UX", level: "Proficient", icon: "Smartphone", highlight: false },
+          { name: "Axios & Fetch APIs", level: "Proficient", icon: "ArrowLeftRight", highlight: false },
+          { name: "State Management (Zustand / Hooks)", level: "Proficient", icon: "Boxes", highlight: false }
         ]
       },
       {
-        name: "DevOps & Engineering Tools",
-        description: "Containerization, automated build pipelines, and developer tooling",
+        name: "Databases",
+        description: "Relational modeling, indexing, schema migrations, and caching solutions",
         items: [
-          { name: "Docker & Compose", level: "Proficient", icon: "Container" },
-          { name: "GitHub Actions (CI/CD)", level: "Proficient", icon: "Workflow" },
-          { name: "Git & GitHub", level: "Advanced", icon: "GitBranch" },
-          { name: "Postman (API Testing)", level: "Advanced", icon: "Send" },
-          { name: "Apache Maven", level: "Advanced", icon: "Package" },
-          { name: "VS Code & IntelliJ", level: "Advanced", icon: "Terminal" },
-          { name: "Vercel Deployment", level: "Proficient", icon: "Cloud" }
+          { name: "MySQL 8.0", level: "Advanced", icon: "Database", highlight: true },
+          { name: "Redis (Caching & Rate Limiting)", level: "Intermediate", icon: "Zap", highlight: true },
+          { name: "Relational Schema Normalization", level: "Advanced", icon: "TableProperties", highlight: false },
+          { name: "Flyway Database Migrations", level: "Familiar", icon: "GitCommit", highlight: false },
+          { name: "Query Indexing & Optimization", level: "Advanced", icon: "TableProperties", highlight: false }
         ]
       },
       {
-        name: "Computer Science & Design Concepts",
-        description: "Foundational software engineering principles for reliable systems",
+        name: "Tools and DevOps",
+        description: "Version control, containerization, build automation, and developer tooling",
         items: [
-          { name: "Object-Oriented Programming (OOP)", level: "Core", icon: "Box" },
-          { name: "Multithreading & Concurrency", level: "Core", icon: "Activity" },
-          { name: "n-Tier / Clean Architecture", level: "Core", icon: "FolderTree" },
-          { name: "DBMS Normalization & Indexing", level: "Core", icon: "TableProperties" },
-          { name: "SDLC & Agile Scrum", level: "Core", icon: "Repeat" },
-          { name: "REST API Design Guidelines", level: "Core", icon: "CheckCircle2" }
+          { name: "Git & GitHub", level: "Advanced", icon: "GitBranch", highlight: true },
+          { name: "Docker & Docker Compose", level: "Proficient", icon: "Container", highlight: true },
+          { name: "Apache Maven", level: "Advanced", icon: "Package", highlight: false },
+          { name: "Postman", level: "Advanced", icon: "Send", highlight: true },
+          { name: "IntelliJ IDEA & VS Code", level: "Advanced", icon: "Terminal", highlight: false },
+          { name: "Linux / CLI Fundamentals", level: "Proficient", icon: "Terminal", highlight: false }
+        ]
+      },
+      {
+        name: "Testing and Deployment",
+        description: "Automated verification pipelines, API integration testing, and cloud hosting",
+        items: [
+          { name: "GitHub Actions (CI/CD)", level: "Proficient", icon: "Workflow", highlight: true },
+          { name: "REST API Testing (Postman)", level: "Advanced", icon: "Send", highlight: true },
+          { name: "JUnit & Mockito Fundamentals", level: "Proficient", icon: "CheckCircle2", highlight: false },
+          { name: "Vercel & Cloud Deployment", level: "Proficient", icon: "Cloud", highlight: false },
+          { name: "Container Orchestration", level: "Proficient", icon: "Container", highlight: false }
+        ]
+      },
+      {
+        name: "AI/ML and Generative AI",
+        description: "Certified AI foundations, applied LLM integration, and AI-assisted engineering",
+        items: [
+          { name: "Generative AI Foundations", level: "Certified", icon: "Sparkles", highlight: true },
+          { name: "Oracle Cloud AI Associate", level: "Certified", icon: "ShieldCheck", highlight: true },
+          { name: "LLM API Integration (Claude API)", level: "Proficient", icon: "Cpu", highlight: true },
+          { name: "Prompt Engineering & ATS Parsing", level: "Proficient", icon: "Box", highlight: false },
+          { name: "AI Dev Tools (GitHub Copilot / Cursor)", level: "Proficient", icon: "Code2", highlight: false }
         ]
       }
     ]

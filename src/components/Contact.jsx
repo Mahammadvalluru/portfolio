@@ -92,7 +92,7 @@ export default function Contact({ contact, personal, darkMode }) {
             >
               <div className="flex items-center gap-2.5 text-blue-400 font-bold text-sm mb-1">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-                <span className="text-white">Immediate Joiner</span>
+                <span className={darkMode ? 'text-white' : 'text-slate-900'}>Immediate Joiner</span>
               </div>
               <p className={`text-xs leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
                 Available to join within 0 to 7 days. Open to on-site, hybrid, or remote roles in Hyderabad, Bengaluru, Pune, NCR, Chennai, or across India.
@@ -137,7 +137,9 @@ export default function Contact({ contact, personal, darkMode }) {
                 <div className="text-xs text-slate-400 uppercase tracking-wider font-mono">
                   Mobile / Call
                 </div>
-                <div className="text-sm sm:text-base font-semibold text-slate-200 font-mono">
+                <div className={`text-sm sm:text-base font-semibold font-mono ${
+                  darkMode ? 'text-slate-200' : 'text-slate-800'
+                }`}>
                   {contact.phoneDisplay}
                 </div>
               </div>

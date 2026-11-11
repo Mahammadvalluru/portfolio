@@ -164,21 +164,34 @@ export default function Hero({ personal, darkMode }) {
             {/* Primary Action Buttons */}
             <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <a
-                href="#projects"
-                onClick={(e) => scrollToSection(e, '#projects')}
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/20 transition-all active:scale-95"
-              >
-                <span>Explore Projects</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-
-              <a
                 href={personal.resumeDownloadUrl}
                 download={personal.resumeFileName}
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm text-white bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-600/25 transition-all active:scale-95"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-600/25 transition-all active:scale-95"
               >
                 <FileDown className="w-4 h-4 text-white" />
                 <span>Download Resume</span>
+              </a>
+
+              <a
+                href="#contact"
+                onClick={(e) => scrollToSection(e, '#contact')}
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/20 transition-all active:scale-95"
+              >
+                <Mail className="w-4 h-4 text-white" />
+                <span>Contact Me</span>
+              </a>
+
+              <a
+                href="#projects"
+                onClick={(e) => scrollToSection(e, '#projects')}
+                className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm border transition-all active:scale-95 ${
+                  darkMode
+                    ? 'border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200 hover:text-white'
+                    : 'border-slate-300 bg-white hover:bg-slate-100 text-slate-800 shadow-sm'
+                }`}
+              >
+                <span>View Projects</span>
+                <ArrowRight className="w-4 h-4" />
               </a>
 
               {/* One-Click Copy Email Button */}

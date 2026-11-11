@@ -27,7 +27,8 @@ import {
   Activity,
   FolderTree,
   TableProperties,
-  Repeat
+  Repeat,
+  Star
 } from 'lucide-react'
 
 // Icon resolver map
@@ -61,7 +62,8 @@ const iconMap = {
   FolderTree: FolderTree,
   TableProperties: TableProperties,
   Repeat: Repeat,
-  CheckCircle2: CheckCircle2
+  CheckCircle2: CheckCircle2,
+  Sparkles: Sparkles
 }
 
 export default function Skills({ skills, darkMode }) {
@@ -74,21 +76,6 @@ export default function Skills({ skills, darkMode }) {
       ? skills.categories
       : skills.categories.filter((c) => c.name === activeCategory)
 
-  const getLevelBadgeClass = (level) => {
-    switch (level) {
-      case 'Primary':
-        return 'bg-blue-500/15 text-blue-400 border-blue-500/30'
-      case 'Advanced':
-        return 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30'
-      case 'Proficient':
-        return 'bg-sky-500/15 text-sky-300 border-sky-500/30'
-      case 'Core':
-        return 'bg-slate-500/15 text-slate-300 border-slate-500/30'
-      default:
-        return 'bg-slate-500/15 text-slate-300 border-slate-500/30'
-    }
-  }
-
   return (
     <section id="skills" className="py-20 lg:py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,17 +83,32 @@ export default function Skills({ skills, darkMode }) {
         <div className="flex flex-col items-center text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium text-blue-400 bg-blue-500/10 border border-blue-500/20 mb-3">
             <Code2 className="w-3.5 h-3.5" />
-            <span>02. TECHNICAL SKILLS</span>
+            <span>03. TECHNICAL SKILLS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-            Specialized Tech Stack &{' '}
+            Technical Skills &{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-slate-200">
               Core Competencies
             </span>
           </h2>
           <p className={`mt-3 text-sm sm:text-base max-w-2xl ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            Categorized technical capabilities honed through enterprise projects, intensive training, and cloud certifications.
+            Organized into 7 focused engineering domains. Starred badges highlight core daily technologies verified through real enterprise projects and cloud certifications.
           </p>
+
+          {/* Quick Highlight Banner */}
+          <div className={`mt-6 px-4 py-2.5 rounded-xl border max-w-3xl flex flex-wrap items-center justify-center gap-2 text-xs font-mono ${
+            darkMode ? 'bg-slate-900/60 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
+          }`}>
+            <span className="font-semibold text-blue-400">Core Stack Focus:</span>
+            <span className="font-semibold text-emerald-400">Java</span> •
+            <span className="font-semibold text-emerald-400">Spring Boot</span> •
+            <span className="font-semibold text-emerald-400">React.js</span> •
+            <span className="font-semibold text-emerald-400">MySQL</span> •
+            <span className="font-semibold text-emerald-400">REST APIs</span> •
+            <span className="font-semibold text-emerald-400">Docker</span> •
+            <span className="font-semibold text-emerald-400">Git</span> •
+            <span className="font-semibold text-emerald-400">CI/CD</span>
+          </div>
 
           {/* Category Filter Pills */}
           <div className="mt-8 flex flex-wrap justify-center gap-2 max-w-4xl">
@@ -114,7 +116,7 @@ export default function Skills({ skills, darkMode }) {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
+                className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all min-h-[36px] ${
                   activeCategory === cat
                     ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30 font-semibold'
                     : darkMode
@@ -128,59 +130,59 @@ export default function Skills({ skills, darkMode }) {
           </div>
         </div>
 
-        {/* Skills Grid by Category */}
+        {/* Compact Skills Grid by 7 Categories */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCategories.map((category) => (
             <div
               key={category.name}
-              className={`rounded-2xl p-6 border transition-all hover:translate-y-[-2px] ${
+              className={`rounded-2xl p-5 sm:p-6 border flex flex-col justify-between transition-all duration-200 hover:border-blue-500/40 ${
                 darkMode
-                  ? 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
+                  ? 'bg-slate-900/60 border-slate-800'
                   : 'bg-white border-slate-200 shadow-sm hover:shadow-md'
               }`}
             >
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="font-bold text-lg tracking-tight text-blue-400">
-                  {category.name}
-                </h3>
-                <span className={`text-xs font-mono ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                  {category.items.length} skills
-                </span>
-              </div>
-              <p className={`text-xs mb-5 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                {category.description}
-              </p>
+              <div>
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <h3 className="font-bold text-base sm:text-lg tracking-tight text-blue-400">
+                    {category.name}
+                  </h3>
+                  <span className={`text-[11px] font-mono px-2 py-0.5 rounded-full border ${
+                    darkMode ? 'bg-slate-950 border-slate-800 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-600'
+                  }`}>
+                    {category.items.length} skills
+                  </span>
+                </div>
+                <p className={`text-xs mb-4 leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                  {category.description}
+                </p>
 
-              <div className="space-y-2.5">
-                {category.items.map((skill) => {
-                  const Icon = iconMap[skill.icon] || Code2
-                  return (
-                    <div
-                      key={skill.name}
-                      className={`flex items-center justify-between p-2.5 rounded-xl border transition-all ${
-                        darkMode
-                          ? 'bg-slate-950/50 border-slate-800/80 hover:border-slate-700'
-                          : 'bg-slate-50 border-slate-200/80 hover:border-slate-300'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <div className="p-1.5 rounded-lg bg-blue-500/10 text-blue-400">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <span className="text-xs sm:text-sm font-semibold tracking-tight">
-                          {skill.name}
-                        </span>
-                      </div>
-                      <span
-                        className={`text-[11px] font-mono px-2 py-0.5 rounded-md border font-medium ${getLevelBadgeClass(
-                          skill.level
-                        )}`}
+                {/* Compact Skill Badges */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {category.items.map((skill) => {
+                    const Icon = iconMap[skill.icon] || Code2
+                    const isHigh = skill.highlight
+                    return (
+                      <div
+                        key={skill.name}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all ${
+                          isHigh
+                            ? darkMode
+                              ? 'bg-blue-500/15 border-blue-500/40 text-blue-200 font-semibold shadow-sm'
+                              : 'bg-blue-50 border-blue-300 text-blue-800 font-semibold shadow-sm'
+                            : darkMode
+                            ? 'bg-slate-950/70 border-slate-800/90 text-slate-300 hover:border-slate-700'
+                            : 'bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-300'
+                        }`}
                       >
-                        {skill.level}
-                      </span>
-                    </div>
-                  )
-                })}
+                        <Icon className={`w-3.5 h-3.5 ${isHigh ? 'text-blue-400' : 'text-slate-400'}`} />
+                        <span>{skill.name}</span>
+                        {isHigh && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           ))}
@@ -189,4 +191,3 @@ export default function Skills({ skills, darkMode }) {
     </section>
   )
 }
-

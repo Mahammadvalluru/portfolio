@@ -27,7 +27,9 @@ export default function Footer({ personal, darkMode }) {
               MV
             </div>
             <div>
-              <div className="font-bold text-sm tracking-tight text-slate-200">
+              <div className={`font-bold text-sm tracking-tight ${
+                darkMode ? 'text-slate-200' : 'text-slate-800'
+              }`}>
                 {personal.name}
               </div>
               <div className="text-xs font-mono text-blue-400">

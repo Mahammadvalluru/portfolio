@@ -80,7 +80,9 @@ export default function Experience({ experience, darkMode }) {
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+                <h3 className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${
+                  darkMode ? 'text-white' : 'text-slate-900'
+                }`}>
                   {item.role}
                 </h3>
 
@@ -146,7 +148,9 @@ export default function Experience({ experience, darkMode }) {
                         <div className="p-1 rounded-md bg-blue-500/10 text-blue-400">
                           <IconComp className="w-3.5 h-3.5" />
                         </div>
-                        <span className="font-semibold text-xs sm:text-sm text-slate-200">
+                        <span className={`font-semibold text-xs sm:text-sm ${
+                          darkMode ? 'text-slate-200' : 'text-slate-800'
+                        }`}>
                           {phase.quarter}
                         </span>
                       </div>

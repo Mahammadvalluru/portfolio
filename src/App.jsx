@@ -66,15 +66,15 @@ export default function App() {
           darkMode={darkMode}
         />
 
-        {/* 3. Skills Section */}
-        <Skills
-          skills={portfolioData.skills}
+        {/* 3. Featured Projects (Moved before Technical Skills) */}
+        <Projects
+          projects={portfolioData.projects}
           darkMode={darkMode}
         />
 
-        {/* 4. Projects Section */}
-        <Projects
-          projects={portfolioData.projects}
+        {/* 4. Compact Technical Skills Section */}
+        <Skills
+          skills={portfolioData.skills}
           darkMode={darkMode}
         />
 

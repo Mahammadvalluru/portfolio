@@ -41,9 +41,14 @@ describe('Component Render Tests', () => {
   it('renders Skills section with categorized tech stack', () => {
     render(<Skills skills={portfolioData.skills} darkMode={true} />)
     expect(screen.getAllByText(/Languages/i).length).toBeGreaterThan(0)
-    expect(screen.getAllByText(/Backend & Frameworks/i).length).toBeGreaterThan(0)
-    expect(screen.getByText(/Spring Boot/i)).toBeInTheDocument()
-    expect(screen.getByText(/Java \(17 \/ 21\)/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Backend Development/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Frontend Development/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Databases/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Tools and DevOps/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Testing and Deployment/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/AI\/ML and Generative AI/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Spring Boot/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Java \(17 \/ 21\)/i).length).toBeGreaterThan(0)
   })
 
   it('renders Projects section with case studies', () => {
