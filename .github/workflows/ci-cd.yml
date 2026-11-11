@@ -22,8 +22,6 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
@@ -34,7 +32,7 @@ jobs:
       - name: Install Dependencies & Linux Platform Bindings
         run: |
           npm ci
-          npm install --no-save @rolldown/binding-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu
+          npm install --no-save @rolldown/binding-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu lightningcss-linux-x64-gnu
 
       - name: Code Quality (ESLint)
         run: npm run lint
@@ -43,16 +41,7 @@ jobs:
         run: npm test
 
       - name: Production Build (Vite)
-        run: |
-          npm run build > build_err.txt 2>&1 || (
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git checkout -B debug-build
-            git add -f build_err.txt
-            git commit -m "debug: build error"
-            git push -f origin debug-build
-            exit 1
-          )
+        run: npm run build
 
       - name: Continuous Deployment to GitHub Pages
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
