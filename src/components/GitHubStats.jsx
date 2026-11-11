@@ -17,32 +17,38 @@ export default function GitHubStats({ githubStats, darkMode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let isMounted = true
     // Attempt to fetch public user details from GitHub REST API
     const fetchGithubData = async () => {
       try {
         const res = await fetch(`https://api.github.com/users/${githubStats.username}`)
         if (res.ok) {
           const data = await res.json()
-          setProfileData({
-            publicRepos: data.public_repos,
-            followers: data.followers,
-            following: data.following,
-            avatar: data.avatar_url,
-            bio: data.bio
-          })
+          if (isMounted) {
+            setProfileData({
+              publicRepos: data.public_repos,
+              followers: data.followers,
+              following: data.following,
+              avatar: data.avatar_url,
+              bio: data.bio
+            })
+          }
         } else {
           // Graceful fallback to mock/preconfigured stats
-          setProfileData(githubStats.fallbackStats)
+          if (isMounted) setProfileData(githubStats.fallbackStats)
         }
       } catch (err) {
         // Network failure / offline fallback
-        setProfileData(githubStats.fallbackStats)
+        if (isMounted) setProfileData(githubStats.fallbackStats)
       } finally {
-        setLoading(false)
+        if (isMounted) setLoading(false)
       }
     }
 
     fetchGithubData()
+    return () => {
+      isMounted = false
+    }
   }, [githubStats])
 
   const stats = profileData || githubStats.fallbackStats

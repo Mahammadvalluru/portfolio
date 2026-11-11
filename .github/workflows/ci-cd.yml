@@ -7,19 +7,17 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-# Cancel redundant in-progress runs for the same branch or PR
+# Cancel in-progress runs for the same branch or PR to optimize build minutes
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
   # ========================================================
-  # Phase 1: Code Quality, Linting & Unit / Integration Tests
+  # Phase 1: Code Quality, Linting & Automated Tests
   # ========================================================
   test:
     name: Code Quality & Automated Tests
@@ -29,10 +27,10 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Install Dependencies
@@ -41,14 +39,14 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run Test Suite (Vitest)
-        run: npm test
+      - name: Run Vitest Suite
+        run: npm test -- --reporter=verbose
 
   # ========================================================
-  # Phase 2: Production Build & Asset Verification
+  # Phase 2: Production Build & Asset Packaging
   # ========================================================
   build:
-    name: Production Build & Asset Packaging
+    name: Production Build & Packaging
     needs: test
     runs-on: ubuntu-latest
 
@@ -56,10 +54,10 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Install Dependencies
@@ -68,26 +66,37 @@ jobs:
       - name: Build Application for Production
         run: npm run build
 
-      - name: Upload Pages Artifact
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload Production Dist Artifact
+        uses: actions/upload-artifact@v4
         with:
-          path: ./dist
+          name: dist-bundle
+          path: dist/
+          retention-days: 7
 
   # ========================================================
   # Phase 3: Continuous Deployment to GitHub Pages
   # ========================================================
   deploy:
-    name: Deploy to GitHub Pages
+    name: Deploy to GitHub Pages (gh-pages)
     needs: build
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Download Production Dist Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-bundle
+          path: dist
+
+      - name: Deploy to gh-pages Branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
