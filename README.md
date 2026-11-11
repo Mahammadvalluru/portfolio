@@ -1,5 +1,9 @@
 # Mahammad Valluru — Personal Portfolio Website
 
+[![CI/CD Pipeline](https://github.com/Mahammadvalluru/portfolio/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Mahammadvalluru/portfolio/actions/workflows/ci-cd.yml)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Production%20Live-black?logo=vercel)](https://portfolio-kappa-gray-giaclmuhug.vercel.app)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue?logo=github)](https://mahammadvalluru.github.io/portfolio/)
+
 > **Modern, High-Impact Developer Portfolio engineered for Java Full Stack, Backend Developer, and Associate Software Engineer roles in India.**
 
 Built with **React 19**, **Vite**, **Tailwind CSS v4**, and **Lucide Icons**. Designed to showcase solid Java/Spring Boot backend depth, relational schema design, Docker containerization, cloud AI certifications, and production-grade case studies.
